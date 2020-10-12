@@ -1,0 +1,19 @@
+= form_with(model: [@blog, @blog.comments.find(params[:id])] , local: true) do |form|
+  - if @comment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@comment.errors.count, "error")
+        prohibited this comment from being saved:
+      %ul
+        - @comment.errors.full_messages.each do |message|
+          %li= message
+  .field
+    %strong
+      = form.label :Commenter
+    = form.text_area :commenter, value: @comment.commenter
+  .field
+    %strong
+      = form.label :body
+    = form.text_area :body, value: @comment.body
+  .actions
+    = form.submit

@@ -1,0 +1,15 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @blog.title
+%p
+  %strong Text:
+  = @blog.text
+%h2 Comments
+= render @blog.comments
+- if user_signed_in?
+  = link_to 'Create', new_blog_comment_path(@blog.id)
+  %br/
+  = link_to 'Edit Blog', edit_blog_path(@blog)
+  |
+= link_to 'Back to index', blogs_path

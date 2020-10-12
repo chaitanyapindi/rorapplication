@@ -1,0 +1,11 @@
+%p
+  %strong Commenter:
+  = comment.commenter
+%p
+  %strong Comment:
+  = comment.body
+- if user_signed_in?
+  = link_to 'Edit', edit_blog_comment_path(@blog.id,comment)
+  |
+  - if current_user && current_user.admin?
+    %td= link_to 'Destroy', blog_comment_path(@blog.id, comment), method: :delete, data: { confirm: 'Are you sure?' }

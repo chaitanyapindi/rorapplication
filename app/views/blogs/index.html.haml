@@ -1,0 +1,21 @@
+%p#notice= notice
+%h1 Blogs
+%table
+  %thead
+    %tr
+      %th Title
+      %th Text
+      %th{colspan: "3"}
+  %tbody
+    - @blogs.each do |blog|
+      %tr
+        %td= blog.title
+        %td= blog.text
+        %td= link_to 'Show', blog
+        - if user_signed_in?
+          %td= link_to 'Edit', edit_blog_path(blog)
+          - if current_user&.admin?
+            %td= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+- if user_signed_in?
+  = link_to 'New Blog', new_blog_path
