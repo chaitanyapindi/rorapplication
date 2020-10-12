@@ -21,8 +21,6 @@ class CommentsController < ApplicationController
 
   #Update a comment on a blog
   def update
-      # @blog = Blog.find(params[:blog_id])
-      # @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
         redirect_to @blog
       else
