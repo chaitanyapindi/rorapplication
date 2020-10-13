@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 describe 'User creates a blog' ,:type=>:feature do
   it 'and check whether it is displaying or not' do
