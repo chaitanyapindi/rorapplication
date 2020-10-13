@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :set_blog, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[ index show ]
   before_action :authenticate_admin!, only: [:destroy]
-  
+
   #Index page displaying all the blogs 
   def index
     @blogs = Blog.all
@@ -23,7 +24,7 @@ class BlogsController < ApplicationController
 
   # Creates a new blog and saves it
   def create
-    @blog = blog.new(blog_params)
+    @blog = Blog.new(blog_params)
     if @blog.save
       redirect_to @blog
     else

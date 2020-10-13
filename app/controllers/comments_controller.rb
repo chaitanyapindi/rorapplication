@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [ :show ]
   
@@ -21,11 +22,13 @@ class CommentsController < ApplicationController
 
   #Update a comment on a blog
   def update
-      if @comment.update(comment_params)
-        redirect_to @blog
-      else
-        render 'edit'
-      end
+    @blog = Blog.find(params[:blog_id])
+    @comment = @blog.comments.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to @blog
+    else
+      render 'edit'
+    end
   end
 
   # Delete a comment on a blog

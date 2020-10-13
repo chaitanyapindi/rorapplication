@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module DeviseTestHelpers
   #Helper to perform user sign_in while testing
   def sign_in(user)
