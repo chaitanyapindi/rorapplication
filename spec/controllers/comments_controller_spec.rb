@@ -6,7 +6,7 @@ describe CommentsController do
     @blog = Blog.create('title'=>'Testing Blog', 'text'=>'Testing Blog')
     @comment = Comment.create('blog_id'=>@blog.id,'commenter'=>'Testing Comment','body'=>'Test comment')
   end
-	#actions a logged-in user can perform on comments of a blog
+	# Actions a logged-in user can perform on comments of a blog
   context 'logged-in user' do
     before do
       @user = User.create('email'=>'testemail@gmail.com','password'=>'test123')
@@ -24,7 +24,7 @@ describe CommentsController do
     end
   end
   
-  #actions admin user can perform on comments of a blog
+  # Actions admin user can perform on comments of a blog
   context 'admin user' do
     before do
       @user = User.create('email'=>'testemail@gmail.com','password'=>'test123','admin'=>'true')

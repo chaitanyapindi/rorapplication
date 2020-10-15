@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 describe BlogsController do
-  #Create a blog before performing each test
+  # Create a blog before performing each test
   before(:each) do
     @blog = Blog.create('title'=>'Testing Blog', 'text'=>'Testing Blog')
   end
 
-  #Actions a logged out user can perform on this application
+  # Actions a logged out user can perform on this application
   context 'loggedout user can' do
     it 'only view blogs' do
       get :show, :params => {'id' => @blog.id }
@@ -16,7 +16,7 @@ describe BlogsController do
     end
   end
 
-  #Actions a logged-in user can perform on this application
+  # Actions a logged-in user can perform on this application
   context 'loggedin user' do
     before do
       @user = User.create('email'=>'testemail@gmail.com','password'=>'test123')
@@ -40,7 +40,7 @@ describe BlogsController do
     end
   end
   
-  #Actions a admin user can perform on this application
+  # Actions a admin user can perform on this application
   context 'admin user' do
     before do
       @user = User.create('email'=>'testemail@gmail.com','password'=>'test123','admin'=>'true')

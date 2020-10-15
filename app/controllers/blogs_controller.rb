@@ -2,15 +2,15 @@
 
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[ index show ]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :authenticate_admin!, only: [:destroy]
 
-  #Index page displaying all the blogs 
+  # Index page displaying all the blogs 
   def index
     @blogs = Blog.all
   end
 
-  #Display a particular blog
+  # Display a particular blog
   def show
   end
 
@@ -19,7 +19,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new
   end
 
-  #Selects a blog to edit 
+  # Selects a blog to edit 
   def edit
   end
 
@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog ||= Blog.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -62,7 +62,7 @@ class BlogsController < ApplicationController
     # Authenticate admin access for a user for special previliges
     def authenticate_admin!
       unless current_user.admin?
-          redirect_to blogs_path
+        redirect_to blogs_path
       end
   end  
 end
